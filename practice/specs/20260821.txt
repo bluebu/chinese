@@ -1,0 +1,20 @@
+# 20260821 今日练习：16/17 课生字 + 15 课词语
+date: 8月21日
+title: 今日练习
+hint: 看拼音，在田字格里写汉字。
+copies: 2
+cell: 15
+gap: 4
+
+[生字] 16 课 copies=3
+陡=dǒu, 级=jí, 链=liàn, 攀=pān, 猴=hóu, 呵=hē
+
+[生字] 17 课 copies=3
+峻=jùn, 砖=zhuān, 隔=gé, 仗=zhàng, 扶=fú, 单=dān,
+斤=jīn, 凝=níng, 雄=xióng, 程=chéng
+
+[词语] 15 课
+麻雀=má què, 打猎=dǎ liè, 脚步=jiǎo bù, 悄悄=qiāo qiāo,
+锋利=fēng lì, 身躯=shēn qū, 掩护=yǎn hù, 幼儿=yòu ér,
+紧张=jǐn zhāng, 浑身=hún shēn, 牺牲=xī shēng, 庞大=páng dà,
+强大=qiáng dà, 力量=lì liàng, 勇气=yǒng qì

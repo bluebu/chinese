@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>我的语文小屋</title>
+  <meta name="description" content="这里放着每天的生字词练习单，看拼音写汉字，打印就能用。" />
+  <meta name="theme-color" content="#FBF6EB" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>" />
+  <!-- 分享卡片：og 文案照抄本页 <title>/<meta description>，改描述时两处同步 -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="我的语文小屋" />
+  <meta property="og:title" content="我的语文小屋" />
+  <meta property="og:description" content="这里放着每天的生字词练习单，看拼音写汉字，打印就能用。" />
+  <!-- 站点级栏目导航页；各栏目自包含在自己的目录里，互不引用 -->
+  <style>
+    :root{
+      --paper:#FBF6EB; --card:#FFFDF8; --ink:#4A3F36; --ink-soft:#9A8C7C;
+      --line:rgba(120,104,84,.16); --grid:rgba(120,104,84,.05);
+      --zhu:#D94F4F; --zhu-bg:#FAE0DE;
+      --qing:#4E8E7C; --qing-bg:#DCEDE6;
+      --font-display:"Kaiti SC","STKaiti",ui-rounded,"PingFang SC",system-ui,serif;
+      --font-cn:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+    }
+    *{ box-sizing:border-box; }
+    html{ -webkit-text-size-adjust:100%; }
+    body{
+      margin:0; font-family:var(--font-cn); color:var(--ink); line-height:1.7;
+      min-height:100svh; display:flex; flex-direction:column;
+      background-color:var(--paper);
+      background-image:
+        radial-gradient(60% 50% at 88% -5%, rgba(217,79,79,.10), transparent 70%),
+        radial-gradient(55% 45% at -8% 8%,  rgba(78,142,124,.10), transparent 70%),
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size:100% 100%,100% 100%,26px 26px,26px 26px;
+      background-attachment:fixed,fixed,scroll,scroll;
+    }
+    .wrap{ width:100%; max-width:640px; margin:auto; padding:48px 20px 64px; }
+    .hero{ text-align:center; margin-bottom:34px; }
+    .eyebrow{
+      display:inline-block; font-size:.78rem; letter-spacing:.18em; color:var(--ink-soft);
+      border:1.5px solid var(--line); border-radius:999px; padding:4px 14px; background:var(--card);
+    }
+    h1{ font-family:var(--font-display); font-size:clamp(2rem,8vw,2.7rem);
+        margin:14px 0 6px; line-height:1.25; }
+    .sub{ color:var(--ink-soft); margin:0; }
+    .cards{ display:flex; flex-direction:column; gap:18px; }
+    .card{
+      display:flex; align-items:center; gap:16px;
+      background:var(--card); border:2px solid var(--line); border-radius:22px;
+      padding:20px 22px; text-decoration:none; color:var(--ink);
+      box-shadow:0 3px 0 var(--line);
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .card:hover{ transform:translateY(-2px); box-shadow:0 5px 0 var(--line); }
+    .card:active{ transform:translateY(1px); box-shadow:0 1px 0 var(--line); }
+    .card .icon{
+      flex:0 0 auto; width:60px; height:60px; border-radius:18px;
+      display:grid; place-items:center; font-size:1.9rem; background:var(--zhu-bg);
+    }
+    .card .tt{ flex:1 1 auto; min-width:0; }
+    .card h2{ font-family:var(--font-display); font-size:1.3rem; margin:0; line-height:1.3; }
+    .card h2 b{ color:var(--zhu); }
+    .card p{ margin:2px 0 0; font-size:.9rem; color:var(--ink-soft); }
+    .card .go{ flex:0 0 auto; font-weight:800; font-size:1.2rem; color:var(--ink-soft); }
+    .card.soon{ opacity:.55; box-shadow:none; pointer-events:none; }
+    .card.soon .icon{ background:var(--qing-bg); }
+    .card.soon h2 b{ color:var(--qing); }
+    .foot{ text-align:center; color:var(--ink-soft); font-size:.85rem; margin-top:40px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <span class="eyebrow">MY CHINESE · 小站</span>
+      <h1>我的语文小屋</h1>
+      <p class="sub">想去哪个房间？点一下就到 👇</p>
+    </header>
+
+    <nav class="cards">
+      <a class="card" href="./practice/">
+        <span class="icon">✍️</span>
+        <span class="tt">
+          <h2>今日<b>练习</b></h2>
+          <p>看拼音写汉字 · 生字词 A4 练习单 · 打印即用</p>
+        </span>
+        <span class="go">→</span>
+      </a>
+
+      <span class="card soon">
+        <span class="icon">📜</span>
+        <span class="tt">
+          <h2>字词句<b>小手册</b></h2>
+          <p>敬请期待</p>
+        </span>
+        <span class="go">soon</span>
+      </span>
+    </nav>
+
+    <p class="foot">我的语文小屋</p>
+  </main>
+</body>
+</html>

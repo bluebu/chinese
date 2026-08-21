@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>今日练习（答案）　8月21日</title>
+<style>
+  @page { size: A4; margin: 11mm 12mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Songti SC", sans-serif;
+    color: #111; font-size: 13px;
+    /* 打印时保留背景/边框颜色，否则田字格的红线打不出来 */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* 屏幕预览时模拟 A4 纸张 */
+  @media screen {
+    body { background: #888; padding: 20px 0; }
+    .page {
+      width: 210mm; min-height: 297mm; margin: 0 auto 20px;
+      background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.4);
+      padding: 11mm 12mm;
+    }
+  }
+  .header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2px solid #111; padding-bottom: 6px; margin-bottom: 5mm;
+  }
+  .header h1 { font-size: 15px; padding-right: 10px; }
+  .header .info { font-size: 12px; white-space: nowrap; }
+  .header .info span { margin-left: 10px; }
+  .blank { display: inline-block; border-bottom: 1px solid #111; width: 44px; }
+  .hint { font-size: 11px; color: #777; margin-bottom: 4mm; }
+
+  .block { margin-bottom: 4mm; }
+  .block h2 {
+    font-size: 13px; font-weight: 700; margin-bottom: 2.5mm;
+    border-left: 3px solid #d94f4f; padding-left: 5px; line-height: 1.2;
+  }
+  .items { display: flex; flex-wrap: wrap; gap: 4mm 4mm; }
+
+  /* 一个字/词 = 拼音行 + 田字格行，两行按格宽对齐成同样的列 */
+  .item { display: inline-grid; grid-template-rows: auto auto; break-inside: avoid; }
+  .py { display: grid; grid-auto-flow: column; grid-auto-columns: 15mm; }
+  .py span {
+    text-align: center; font-size: 11px; line-height: 1.5; color: #333;
+    font-family: "Times New Roman", "PingFang SC", serif;
+    letter-spacing: -.2px;
+  }
+  .cells { display: grid; grid-auto-flow: column; grid-auto-columns: 15mm; }
+
+  /* 田字格：实线外框 + 十字虚线；相邻格子负边距共享竖边 */
+  .tian {
+    width: 15mm; height: 15mm; position: relative;
+    border: .75pt solid #d94f4f;
+  }
+  .tian + .tian { margin-left: -.75pt; }
+  .cells + .cells { margin-top: -.75pt; }
+  .tian::before, .tian::after { content: ""; position: absolute; }
+  .tian::before { left: 0; right: 0; top: 50%; border-top: .5pt dashed #e79a9a; }
+  .tian::after { top: 0; bottom: 0; left: 50%; border-left: .5pt dashed #e79a9a; }
+  /* 答案版：格子里印出汉字 */
+  .tian b {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    font-size: 9.3mm; font-weight: 400; color: #444;
+    font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+  }
+
+  .footer { margin-top: 4mm; text-align: right; color: #999; font-size: 10px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>今日练习（答案）　8月21日</h1>
+    <div class="info"></div>
+  </div>
+
+  <div class="block">
+    <h2>生字 16 课</h2>
+    <div class="items">
+      <div class="item"><div class="py"><span>dǒu</span></div><div class="cells"><i class="tian"><b>陡</b></i></div><div class="cells"><i class="tian"><b>陡</b></i></div><div class="cells"><i class="tian"><b>陡</b></i></div></div>
+      <div class="item"><div class="py"><span>jí</span></div><div class="cells"><i class="tian"><b>级</b></i></div><div class="cells"><i class="tian"><b>级</b></i></div><div class="cells"><i class="tian"><b>级</b></i></div></div>
+      <div class="item"><div class="py"><span>liàn</span></div><div class="cells"><i class="tian"><b>链</b></i></div><div class="cells"><i class="tian"><b>链</b></i></div><div class="cells"><i class="tian"><b>链</b></i></div></div>
+      <div class="item"><div class="py"><span>pān</span></div><div class="cells"><i class="tian"><b>攀</b></i></div><div class="cells"><i class="tian"><b>攀</b></i></div><div class="cells"><i class="tian"><b>攀</b></i></div></div>
+      <div class="item"><div class="py"><span>hóu</span></div><div class="cells"><i class="tian"><b>猴</b></i></div><div class="cells"><i class="tian"><b>猴</b></i></div><div class="cells"><i class="tian"><b>猴</b></i></div></div>
+      <div class="item"><div class="py"><span>hē</span></div><div class="cells"><i class="tian"><b>呵</b></i></div><div class="cells"><i class="tian"><b>呵</b></i></div><div class="cells"><i class="tian"><b>呵</b></i></div></div>
+    </div>
+  </div>
+  <div class="block">
+    <h2>生字 17 课</h2>
+    <div class="items">
+      <div class="item"><div class="py"><span>jùn</span></div><div class="cells"><i class="tian"><b>峻</b></i></div><div class="cells"><i class="tian"><b>峻</b></i></div><div class="cells"><i class="tian"><b>峻</b></i></div></div>
+      <div class="item"><div class="py"><span>zhuān</span></div><div class="cells"><i class="tian"><b>砖</b></i></div><div class="cells"><i class="tian"><b>砖</b></i></div><div class="cells"><i class="tian"><b>砖</b></i></div></div>
+      <div class="item"><div class="py"><span>gé</span></div><div class="cells"><i class="tian"><b>隔</b></i></div><div class="cells"><i class="tian"><b>隔</b></i></div><div class="cells"><i class="tian"><b>隔</b></i></div></div>
+      <div class="item"><div class="py"><span>zhàng</span></div><div class="cells"><i class="tian"><b>仗</b></i></div><div class="cells"><i class="tian"><b>仗</b></i></div><div class="cells"><i class="tian"><b>仗</b></i></div></div>
+      <div class="item"><div class="py"><span>fú</span></div><div class="cells"><i class="tian"><b>扶</b></i></div><div class="cells"><i class="tian"><b>扶</b></i></div><div class="cells"><i class="tian"><b>扶</b></i></div></div>
+      <div class="item"><div class="py"><span>dān</span></div><div class="cells"><i class="tian"><b>单</b></i></div><div class="cells"><i class="tian"><b>单</b></i></div><div class="cells"><i class="tian"><b>单</b></i></div></div>
+      <div class="item"><div class="py"><span>jīn</span></div><div class="cells"><i class="tian"><b>斤</b></i></div><div class="cells"><i class="tian"><b>斤</b></i></div><div class="cells"><i class="tian"><b>斤</b></i></div></div>
+      <div class="item"><div class="py"><span>níng</span></div><div class="cells"><i class="tian"><b>凝</b></i></div><div class="cells"><i class="tian"><b>凝</b></i></div><div class="cells"><i class="tian"><b>凝</b></i></div></div>
+      <div class="item"><div class="py"><span>xióng</span></div><div class="cells"><i class="tian"><b>雄</b></i></div><div class="cells"><i class="tian"><b>雄</b></i></div><div class="cells"><i class="tian"><b>雄</b></i></div></div>
+      <div class="item"><div class="py"><span>chéng</span></div><div class="cells"><i class="tian"><b>程</b></i></div><div class="cells"><i class="tian"><b>程</b></i></div><div class="cells"><i class="tian"><b>程</b></i></div></div>
+    </div>
+  </div>
+  <div class="block">
+    <h2>词语 15 课</h2>
+    <div class="items">
+      <div class="item"><div class="py"><span>má</span><span>què</span></div><div class="cells"><i class="tian"><b>麻</b></i><i class="tian"><b>雀</b></i></div><div class="cells"><i class="tian"><b>麻</b></i><i class="tian"><b>雀</b></i></div></div>
+      <div class="item"><div class="py"><span>dǎ</span><span>liè</span></div><div class="cells"><i class="tian"><b>打</b></i><i class="tian"><b>猎</b></i></div><div class="cells"><i class="tian"><b>打</b></i><i class="tian"><b>猎</b></i></div></div>
+      <div class="item"><div class="py"><span>jiǎo</span><span>bù</span></div><div class="cells"><i class="tian"><b>脚</b></i><i class="tian"><b>步</b></i></div><div class="cells"><i class="tian"><b>脚</b></i><i class="tian"><b>步</b></i></div></div>
+      <div class="item"><div class="py"><span>qiāo</span><span>qiāo</span></div><div class="cells"><i class="tian"><b>悄</b></i><i class="tian"><b>悄</b></i></div><div class="cells"><i class="tian"><b>悄</b></i><i class="tian"><b>悄</b></i></div></div>
+      <div class="item"><div class="py"><span>fēng</span><span>lì</span></div><div class="cells"><i class="tian"><b>锋</b></i><i class="tian"><b>利</b></i></div><div class="cells"><i class="tian"><b>锋</b></i><i class="tian"><b>利</b></i></div></div>
+      <div class="item"><div class="py"><span>shēn</span><span>qū</span></div><div class="cells"><i class="tian"><b>身</b></i><i class="tian"><b>躯</b></i></div><div class="cells"><i class="tian"><b>身</b></i><i class="tian"><b>躯</b></i></div></div>
+      <div class="item"><div class="py"><span>yǎn</span><span>hù</span></div><div class="cells"><i class="tian"><b>掩</b></i><i class="tian"><b>护</b></i></div><div class="cells"><i class="tian"><b>掩</b></i><i class="tian"><b>护</b></i></div></div>
+      <div class="item"><div class="py"><span>yòu</span><span>ér</span></div><div class="cells"><i class="tian"><b>幼</b></i><i class="tian"><b>儿</b></i></div><div class="cells"><i class="tian"><b>幼</b></i><i class="tian"><b>儿</b></i></div></div>
+      <div class="item"><div class="py"><span>jǐn</span><span>zhāng</span></div><div class="cells"><i class="tian"><b>紧</b></i><i class="tian"><b>张</b></i></div><div class="cells"><i class="tian"><b>紧</b></i><i class="tian"><b>张</b></i></div></div>
+      <div class="item"><div class="py"><span>hún</span><span>shēn</span></div><div class="cells"><i class="tian"><b>浑</b></i><i class="tian"><b>身</b></i></div><div class="cells"><i class="tian"><b>浑</b></i><i class="tian"><b>身</b></i></div></div>
+      <div class="item"><div class="py"><span>xī</span><span>shēng</span></div><div class="cells"><i class="tian"><b>牺</b></i><i class="tian"><b>牲</b></i></div><div class="cells"><i class="tian"><b>牺</b></i><i class="tian"><b>牲</b></i></div></div>
+      <div class="item"><div class="py"><span>páng</span><span>dà</span></div><div class="cells"><i class="tian"><b>庞</b></i><i class="tian"><b>大</b></i></div><div class="cells"><i class="tian"><b>庞</b></i><i class="tian"><b>大</b></i></div></div>
+      <div class="item"><div class="py"><span>qiáng</span><span>dà</span></div><div class="cells"><i class="tian"><b>强</b></i><i class="tian"><b>大</b></i></div><div class="cells"><i class="tian"><b>强</b></i><i class="tian"><b>大</b></i></div></div>
+      <div class="item"><div class="py"><span>lì</span><span>liàng</span></div><div class="cells"><i class="tian"><b>力</b></i><i class="tian"><b>量</b></i></div><div class="cells"><i class="tian"><b>力</b></i><i class="tian"><b>量</b></i></div></div>
+      <div class="item"><div class="py"><span>yǒng</span><span>qì</span></div><div class="cells"><i class="tian"><b>勇</b></i><i class="tian"><b>气</b></i></div><div class="cells"><i class="tian"><b>勇</b></i><i class="tian"><b>气</b></i></div></div>
+    </div>
+  </div>
+  <div class="footer">共 31 项</div>
+</div>
+</body>
+</html>
