@@ -41,4 +41,6 @@ spec 完整语法见 `practice/README.md`；日常工作流见 `/practice` skill
 - 本地预览 `make up`（会打印手机/iPad 同 WiFi 地址 + 二维码）；`make practice` 生成最新一份练习单。
 - `practice/index.html` 由脚本自动生成（GitHub Pages 不列目录），**不要手改**——改模板改脚本里的 `INDEX_TEMPLATE`。
 - 重大改动 / 体系取舍先和用户讨论；确认后 commit（用户要求才 push）。
-- **域名和 GitHub 远端尚未确定**：还没有 `CNAME`，也没有 remote。定下来之前只在本地预览。
+- 分支 **master**，远端 `git@github.com:bluebu/chinese.git`，GitHub Pages 地址 `https://bluebu.github.io/chinese/`。
+- **自定义域名尚未确定**：还没有 `CNAME`。定下来后在根目录加（参照 `../english` 的 `english.hi-ruby.com`）。
+- 本地预览默认端口 **8001**（8000 留给英语站）。

@@ -50,7 +50,7 @@ PDF 由无头 Chrome 导出，A4 竖版，直接打印。
 ## 本地启动预览
 
 ```bash
-make up            # 启动本地预览（默认端口 8000）
+make up            # 启动本地预览（默认端口 8001）
 make up PORT=9000  # 指定端口
 make open          # 用浏览器打开
 make stop          # 停止预览
@@ -62,5 +62,14 @@ make help          # 查看全部命令
 
 ## 部署
 
-全部相对路径，推到 GitHub 后在 **Settings → Pages** 选分支 `/ (root)` 即可；
-要自定义域名就在根目录加 `CNAME`（参照 `../english`）。域名和远端目前都还没定。
+远端 `git@github.com:bluebu/chinese.git`，分支 `master`。
+
+全部相对路径，所以部署在根域名或 `/仓库名/` 子路径下都能打开。在 GitHub 仓库
+**Settings → Pages → Build and deployment** 里 Source 选 `Deploy from a branch`、
+Branch 选 `master` / `/ (root)`，保存后等一两分钟即可访问：
+
+```
+https://bluebu.github.io/chinese/
+```
+
+要自定义域名就在根目录加 `CNAME`（参照 `../english` 的 `english.hi-ruby.com`）。域名目前还没定。

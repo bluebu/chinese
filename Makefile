@@ -5,7 +5,7 @@
 #   make stop    停止占用端口的预览进程
 #   make help    查看全部命令
 
-PORT ?= 8000
+PORT ?= 8001
 HOST ?= 0.0.0.0
 
 .PHONY: up open stop practice help
