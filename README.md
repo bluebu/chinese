@@ -1,6 +1,9 @@
 # 我的语文小屋
 
-小学生语文练习站。目前一个栏目：**今日练习**——把每天的生字、词语做成 A4「看拼音写汉字」打印单。
+小学生语文练习站。两个栏目：
+
+- **今日练习**——把每天的生字、词语做成 A4「看拼音写汉字」打印单。
+- **朗读打卡**——把要背的课文做成 A4 大字打印单，读一遍涂一个圈。
 
 姊妹项目：[english](../english)（英语小屋），结构和工程约定一致。
 
@@ -13,6 +16,12 @@ practice/               栏目一：今日练习（自包含，和其他栏目�
   specs/<日期>.txt      练习内容，一天一份
   sheets/<日期>.html    生成的练习单（.pdf 同名；_answers 后缀是答案版）
   index.html            练习单目录页（脚本自动生成，别手改）
+  README.md             spec 完整语法
+recite/                 栏目二：朗读打卡（自包含，和其他栏目隔离）
+  generate_recite.py    spec → A4 朗读打卡单（HTML + PDF），一篇课文一页
+  specs/<日期>.txt      当天要读的篇目，一天一份
+  sheets/<日期>.html    生成的打卡单（.pdf 同名）
+  index.html            打卡单目录页（脚本自动生成，别手改）
   README.md             spec 完整语法
 Makefile                本地预览 + 生成快捷命令
 .nojekyll               让 GitHub Pages 原样服务静态文件
@@ -46,6 +55,27 @@ cell: 15
 > 装了 `pypinyin`（`pip3 install pypinyin`）可以省掉单音字的拼音，不装也能用。
 
 PDF 由无头 Chrome 导出，A4 竖版，直接打印。
+
+## 出一张朗读打卡单
+
+```bash
+cd recite
+python3 generate_recite.py specs/20260825.txt --pdf
+```
+
+或在根目录 `make recite`。spec 长这样（一篇课文一页，`times` 是读几遍、`size` 是正文字号）：
+
+```
+date: 8月25日
+times: 10
+
+[观潮] 第 3-4 自然段 author=赵宗成、朱明元 size=17
+task: 今天读 10 遍，以后要背诵。
+午后一点左右，从远处传来隆隆的响声，好像闷雷滚动。顿时人声鼎(dǐng)沸(fèi)……
+```
+
+> 正文里 `字(拼音)` 排成小字注音，只标难字。正文短就把 `size` 调大，别让一页看着空。
+> 完整语法见 [recite/README.md](recite/README.md)。
 
 ## 本地启动预览
 

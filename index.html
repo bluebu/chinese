@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>我的语文小屋</title>
-  <meta name="description" content="这里放着每天的生字词练习单，看拼音写汉字，打印就能用。" />
+  <meta name="description" content="这里放着每天的生字词练习单和要背的课文，打印就能用。" />
   <meta name="theme-color" content="#FBF6EB" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>" />
   <!-- 分享卡片：og 文案照抄本页 <title>/<meta description>，改描述时两处同步 -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="我的语文小屋" />
   <meta property="og:title" content="我的语文小屋" />
-  <meta property="og:description" content="这里放着每天的生字词练习单，看拼音写汉字，打印就能用。" />
+  <meta property="og:description" content="这里放着每天的生字词练习单和要背的课文，打印就能用。" />
   <!-- 站点级栏目导航页；各栏目自包含在自己的目录里，互不引用 -->
   <style>
     :root{
@@ -64,6 +64,8 @@
     .card h2 b{ color:var(--zhu); }
     .card p{ margin:2px 0 0; font-size:.9rem; color:var(--ink-soft); }
     .card .go{ flex:0 0 auto; font-weight:800; font-size:1.2rem; color:var(--ink-soft); }
+    .card.qing .icon{ background:var(--qing-bg); }
+    .card.qing h2 b{ color:var(--qing); }
     .card.soon{ opacity:.55; box-shadow:none; pointer-events:none; }
     .card.soon .icon{ background:var(--qing-bg); }
     .card.soon h2 b{ color:var(--qing); }
@@ -88,8 +90,17 @@
         <span class="go">→</span>
       </a>
 
-      <span class="card soon">
+      <a class="card qing" href="./recite/">
         <span class="icon">📜</span>
+        <span class="tt">
+          <h2>朗读<b>打卡</b></h2>
+          <p>要背的课文 · 大字排版 · 读一遍涂一个圈</p>
+        </span>
+        <span class="go">→</span>
+      </a>
+
+      <span class="card soon">
+        <span class="icon">📚</span>
         <span class="tt">
           <h2>字词句<b>小手册</b></h2>
           <p>敬请期待</p>

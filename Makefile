@@ -8,7 +8,7 @@
 PORT ?= 8001
 HOST ?= 0.0.0.0
 
-.PHONY: up open stop practice help
+.PHONY: up open stop practice recite help
 .DEFAULT_GOAL := help
 
 help:
@@ -19,6 +19,7 @@ help:
 	@echo "  make open      用浏览器打开预览页"
 	@echo "  make stop      停止预览服务"
 	@echo "  make practice  用 specs/ 里最新的 spec 生成今日练习单（HTML + PDF）"
+	@echo "  make recite    用 specs/ 里最新的 spec 生成朗读打卡单（HTML + PDF）"
 	@echo "  make up PORT=9000   指定端口启动"
 	@echo ""
 
@@ -53,3 +54,6 @@ stop:
 
 practice:
 	@cd practice && python3 generate_practice.py --pdf
+
+recite:
+	@cd recite && python3 generate_recite.py --pdf

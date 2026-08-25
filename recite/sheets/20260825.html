@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>朗读打卡　8月25日</title>
+<style>
+  @page { size: A4; margin: 12mm 14mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Songti SC", sans-serif;
+    color: #111; font-size: 13px;
+    /* 打印时保留背景/边框颜色，否则打卡圈和译文底色全没了 */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* 屏幕预览时模拟 A4 纸张 */
+  @media screen {
+    body { background: #888; padding: 20px 0; }
+    .page {
+      width: 210mm; height: 297mm; margin: 0 auto 20px;
+      background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.4);
+      padding: 12mm 14mm;
+    }
+  }
+  /* 一篇课文一页：撑满 A4，正文居中，打卡区钉底 */
+  .page { display: flex; flex-direction: column; }
+  @media print { .page { height: 273mm; } }
+  /* 正文块吃掉剩余高度，把空白都留到打卡区上方 */
+  .main { flex: 1 1 auto; }
+  .page + .page { page-break-before: always; }
+
+  .header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2px solid #111; padding-bottom: 6px; margin-bottom: 6mm;
+  }
+  .header h1 { font-size: 15px; padding-right: 10px; }
+  .header .info { font-size: 12px; white-space: nowrap; }
+  .header .info span { margin-left: 10px; }
+  .blank { display: inline-block; border-bottom: 1px solid #111; width: 44px; }
+
+  .lesson { text-align: center; margin-bottom: 5mm; }
+  .lesson h2 {
+    font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+    font-size: 26px; font-weight: 700; line-height: 1.3;
+  }
+  .lesson h2 small { font-size: 15px; font-weight: 400; color: #555; }
+  .lesson .author { font-size: 12px; color: #777; margin-top: 2px; }
+
+  .task {
+    font-size: 12px; color: #b3423f; background: #FAE9E7;
+    border-left: 3px solid #d94f4f; border-radius: 0 4px 4px 0;
+    padding: 4px 9px; margin-bottom: 5mm;
+  }
+
+  /* 正文：大字宽行距，给朗读用 */
+  .text p {
+    font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+    font-size: var(--size, 17px); line-height: 2.1; text-indent: 2em;
+    text-align: justify; margin-bottom: 3mm;
+  }
+  ruby rt {
+    font-family: "Times New Roman", "PingFang SC", serif;
+    font-size: .5em; color: #b3423f; line-height: 1;
+  }
+
+  .note {
+    font-size: 12px; line-height: 1.8; color: #444; background: #F5F2EA;
+    border: 1px dashed #C9BCA6; border-radius: 5px; padding: 6px 10px; margin-top: 3mm;
+  }
+  .note b { color: #7a6a52; font-weight: 700; }
+
+  /* 打卡区钉在页面底部，正文长短不一时位置也一致 */
+  .check { margin-top: auto; padding-top: 5mm; border-top: 1.5px dashed #bbb; }
+  .check .cap { font-size: 12px; color: #666; margin-bottom: 3mm; }
+  .check .cap b { color: #d94f4f; font-size: 13px; }
+  .ticks { display: flex; flex-wrap: wrap; gap: 4mm; }
+  .tick {
+    width: 13mm; height: 13mm; border: 1pt solid #d94f4f; border-radius: 50%;
+    display: grid; place-items: center; font-size: 11px; color: #e79a9a;
+    font-style: normal; font-family: "Times New Roman", serif;
+  }
+
+  .footer { margin-top: 3mm; text-align: right; color: #999; font-size: 10px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>朗读打卡　8月25日</h1>
+    <div class="info">姓名 <span class="blank"></span> 日期 <span class="blank"></span> 家长签字 <span class="blank"></span></div>
+  </div>
+  <div class="lesson">
+    <h2>观潮<small>（第 3-4 自然段）</small></h2>
+    <p class="author">赵宗成、朱明元</p>
+  </div>
+  <p class="task">今天读 10 遍，以后要背诵。</p>
+  <div class="main" style="--size:17px">
+    <div class="text">
+      <p>午后一点左右，从远处传来隆隆的响声，好像闷雷滚动。顿时人声<ruby>鼎<rt>dǐng</rt></ruby><ruby>沸<rt>fèi</rt></ruby>，有人告诉我们，潮来了！我们<ruby>踮<rt>diǎn</rt></ruby>着脚往东望去，江面还是风平浪静，看不出有什么变化。过了一会儿，响声越来越大，只见东边水天相接的地方出现了一条白线，人群又沸腾起来。</p>
+      <p>那条白线很快地向我们移来，逐渐拉长，变粗，横<ruby>贯<rt>guàn</rt></ruby>江面。再近些，只见白浪翻滚，形成一<ruby>堵<rt>dǔ</rt></ruby>两丈多高的水墙。浪潮越来越近，犹如千万匹白色战马齐头并进，浩浩荡荡地飞奔而来；那声音如同山<ruby>崩<rt>bēng</rt></ruby>地裂，好像大地都被震得<ruby>颤<rt>chàn</rt></ruby>动起来。</p>
+    </div>
+
+  </div>
+  <div class="check">
+    <p class="cap">读一遍，涂一个圈 —— 一共读 <b>10</b> 遍</p>
+    <div class="ticks">
+      <i class="tick">1</i>
+      <i class="tick">2</i>
+      <i class="tick">3</i>
+      <i class="tick">4</i>
+      <i class="tick">5</i>
+      <i class="tick">6</i>
+      <i class="tick">7</i>
+      <i class="tick">8</i>
+      <i class="tick">9</i>
+      <i class="tick">10</i>
+    </div>
+  </div>
+  <div class="footer">第 1 篇 / 共 3 篇</div>
+</div>
+<div class="page">
+  <div class="header">
+    <h1>朗读打卡　8月25日</h1>
+    <div class="info">姓名 <span class="blank"></span> 日期 <span class="blank"></span> 家长签字 <span class="blank"></span></div>
+  </div>
+  <div class="lesson">
+    <h2>走月亮<small>（第 4 自然段）</small></h2>
+    <p class="author">吴然</p>
+  </div>
+  <p class="task">明后天熟读、背诵。</p>
+  <div class="main" style="--size:21px">
+    <div class="text">
+      <p>细细的溪水，流着山草和野花的香味，流着月光。灰白色的鹅<ruby>卵<rt>luǎn</rt></ruby>石布满河床。<ruby>哟<rt>yō</rt></ruby>，卵石间有多少可爱的小水塘啊，每个小水塘都抱着一个月亮！哦，阿妈，白天你在溪里洗衣<ruby>裳<rt>shang</rt></ruby>，而我，用树叶做小船，运<ruby>载<rt>zài</rt></ruby>许多新鲜的花瓣……哦，阿妈，我们到溪边去吧，去看看小水塘，看看水塘里的月亮，看看我采过野花的地方。</p>
+    </div>
+
+  </div>
+  <div class="check">
+    <p class="cap">读一遍，涂一个圈 —— 一共读 <b>10</b> 遍</p>
+    <div class="ticks">
+      <i class="tick">1</i>
+      <i class="tick">2</i>
+      <i class="tick">3</i>
+      <i class="tick">4</i>
+      <i class="tick">5</i>
+      <i class="tick">6</i>
+      <i class="tick">7</i>
+      <i class="tick">8</i>
+      <i class="tick">9</i>
+      <i class="tick">10</i>
+    </div>
+  </div>
+  <div class="footer">第 2 篇 / 共 3 篇</div>
+</div>
+<div class="page">
+  <div class="header">
+    <h1>朗读打卡　8月25日</h1>
+    <div class="info">姓名 <span class="blank"></span> 日期 <span class="blank"></span> 家长签字 <span class="blank"></span></div>
+  </div>
+  <div class="lesson">
+    <h2>精卫填海<small>（文言文）</small></h2>
+    <p class="author">《山海经·北山经》</p>
+  </div>
+  <p class="task">明后天默写、背诵。</p>
+  <div class="main" style="--size:27px">
+    <div class="text">
+      <p>炎帝之<ruby>少<rt>shào</rt></ruby>女，名<ruby>曰<rt>yuē</rt></ruby>女娃。女娃游于东海，<ruby>溺<rt>nì</rt></ruby>而不返，故为精卫，常<ruby>衔<rt>xián</rt></ruby>西山之木石，以<ruby>堙<rt>yīn</rt></ruby>于东海。</p>
+    </div>
+    <p class="note"><b>意思：</b>炎帝的小女儿，名叫女娃。有一次，女娃去东海游玩，溺水身亡，再也没有回来，所以化为精卫鸟。她经常叼着西山上的树枝和石块，用来填塞东海。</p>
+  </div>
+  <div class="check">
+    <p class="cap">读一遍，涂一个圈 —— 一共读 <b>10</b> 遍</p>
+    <div class="ticks">
+      <i class="tick">1</i>
+      <i class="tick">2</i>
+      <i class="tick">3</i>
+      <i class="tick">4</i>
+      <i class="tick">5</i>
+      <i class="tick">6</i>
+      <i class="tick">7</i>
+      <i class="tick">8</i>
+      <i class="tick">9</i>
+      <i class="tick">10</i>
+    </div>
+  </div>
+  <div class="footer">第 3 篇 / 共 3 篇</div>
+</div>
+</body>
+</html>
