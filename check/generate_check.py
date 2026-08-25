@@ -51,15 +51,15 @@ TEMPLATE = """<!DOCTYPE html>
     display: flex; align-items: baseline; justify-content: space-between;
     border-bottom: 2px solid #111; padding-bottom: 6px; margin-bottom: 3mm;
   }}
-  .header h1 {{ font-size: 16px; padding-right: 10px; }}
-  .header h1 small {{ font-size: 12px; font-weight: 400; color: #666; }}
+  .header h1 {{ font-size: 18px; padding-right: 10px; }}
+  .header h1 small {{ font-size: 13px; font-weight: 400; color: #666; }}
   .header .info {{ font-size: 12px; white-space: nowrap; }}
   .header .info span {{ margin-left: 10px; }}
   .header .info b {{ color: #42688F; }}
   .blank {{ display: inline-block; border-bottom: 1px solid #111; width: 42px; }}
 
   .hint {{
-    font-size: 12px; color: #35536f; background: #E7EEF6;
+    font-size: 13px; color: #35536f; background: #E7EEF6;
     border-left: 3px solid #42688F; border-radius: 0 4px 4px 0;
     padding: 4px 9px; margin-bottom: 4mm;
   }}
@@ -77,62 +77,62 @@ TEMPLATE = """<!DOCTYPE html>
   }}
   .bh h2 {{
     flex: 1 1 auto; font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
-    font-size: 16px; font-weight: 700;
+    font-size: 18px; font-weight: 700;
   }}
-  .bh h2 small {{ font-size: 12px; font-weight: 400; color: #666; }}
-  .bh .meta {{ flex: 0 0 auto; font-size: 11px; color: #666; white-space: nowrap; }}
+  .bh h2 small {{ font-size: 13px; font-weight: 400; color: #666; }}
+  .bh .meta {{ flex: 0 0 auto; font-size: 12px; color: #666; white-space: nowrap; }}
   .bh .meta em {{ font-style: normal; color: #42688F; }}
   .bh .meta i {{
     font-style: normal; margin-left: 8px; color: #b3423f;
     background: #FAE9E7; border-radius: 3px; padding: 1px 5px;
   }}
-  .note {{ font-size: 11px; color: #777; margin-bottom: 2mm; }}
+  .note {{ font-size: 12.5px; color: #777; margin-bottom: 2.5mm; }}
 
   /* 勾选框：家长边问边打勾 */
   .tick {{
-    flex: 0 0 auto; width: 4.6mm; height: 4.6mm;
+    flex: 0 0 auto; width: 5.4mm; height: 5.4mm;
     border: 1pt solid #42688F; border-radius: 1mm; background: #fff;
   }}
 
   /* 词语网格：两列，一项一格 */
-  .items {{ display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 6mm; }}
+  .items {{ display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 6mm; }}
   .items .it {{ display: flex; align-items: center; gap: 2.5mm; }}
   .items .q {{
     font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
-    font-size: 15px; white-space: nowrap;
+    font-size: 20px; white-space: nowrap;
   }}
-  .items .a {{ font-size: 11px; color: #b3423f; font-family: "Times New Roman", serif; }}
+  .items .a {{ font-size: 13px; color: #b3423f; font-family: "Times New Roman", serif; }}
   .items .dots {{ flex: 1 1 auto; border-bottom: 1px dotted #ccc; }}
 
   /* 整行问答：题面长、答案长的用这个 */
-  .ask {{ display: flex; align-items: flex-start; gap: 2.5mm; margin-bottom: 2mm; }}
+  .ask {{ display: flex; align-items: flex-start; gap: 2.5mm; margin-bottom: 2.5mm; }}
   .ask .tick {{ margin-top: .6mm; }}
   .ask .body {{ flex: 1 1 auto; min-width: 0; }}
-  .ask .q {{ font-family: "Kaiti SC", "STKaiti", "Songti SC", serif; font-size: 15px; }}
-  .ask .a {{ font-size: 11px; color: #777; line-height: 1.6; }}
+  .ask .q {{ font-family: "Kaiti SC", "STKaiti", "Songti SC", serif; font-size: 20px; }}
+  .ask .a {{ font-size: 12.5px; color: #777; line-height: 1.65; }}
   .ask .a b {{ color: #b3423f; font-weight: 400; }}
 
   /* 默写用的空白横线 */
-  .lines .ln {{ height: 9mm; border-bottom: 1px solid #999; }}
+  .lines .ln {{ height: 11mm; border-bottom: 1px solid #999; }}
   .lines .ln:first-child {{ margin-top: 1mm; }}
-  .answer {{ font-size: 11px; color: #999; margin-top: 1.5mm; }}
+  .answer {{ font-size: 12.5px; color: #999; margin-top: 2mm; }}
   .answer b {{ color: #b3423f; font-weight: 400; }}
 
   /* 错题格吃掉剩余高度（只印在题面版上），把空白变成能写字的地方 */
   .memo {{
     flex: 1 1 auto; min-height: 16mm; margin-top: 2mm;
     border: 1px dashed #C7D3E0; border-radius: 4px; padding: 3px 8px;
-    font-size: 11px; color: #9aa8b6;
+    font-size: 12px; color: #9aa8b6;
   }}
 
   /* 总评区钉在页底 */
   .total {{
     margin-top: auto; padding-top: 4mm; border-top: 1.5px dashed #bbb;
     display: flex; align-items: baseline; justify-content: space-between;
-    font-size: 12px; color: #555;
+    font-size: 13px; color: #555;
   }}
-  .total .big {{ font-size: 13px; color: #111; }}
-  .total .big b {{ color: #42688F; font-size: 15px; }}
+  .total .big {{ font-size: 14px; color: #111; }}
+  .total .big b {{ color: #42688F; font-size: 16px; }}
   .footer {{ margin-top: 2mm; text-align: right; color: #999; font-size: 10px; }}
 </style>
 </head>
@@ -264,7 +264,9 @@ def build(spec_path: Path, pdf: bool = False, answers: bool = False) -> None:
                 + "</span></div>")
             total += 1
         if b["lines"]:
-            lns = "\n".join('        <div class="ln"></div>' for _ in range(b["lines"]))
+            # 家长版不用给孩子留书写空间，留一行够家长记错字就行
+            n_lines = 1 if answers else b["lines"]
+            lns = "\n".join('        <div class="ln"></div>' for _ in range(n_lines))
             body.append(f'      <div class="lines">\n{lns}\n      </div>')
             total += 1
         if b["answer"] and answers:
@@ -398,20 +400,30 @@ ROW_TEMPLATE = """      <li>
 def write_index() -> None:
     """扫 sheets/ 生成 check/index.html（GitHub Pages 不会自动列目录）。
     按日期倒序，最新的在最上面；副标题取同名 spec 的 range: 和题块名。"""
+    def order(p: Path) -> tuple:
+        """一课一张的按课号升序排前面；按日期命名的旧单子排后面，新的在前。"""
+        if re.fullmatch(r"\d{1,2}", p.stem):
+            return (0, int(p.stem))
+        return (1, -int(p.stem)) if p.stem.isdigit() else (2, 0)
+
     sheets = sorted((p for p in Path("sheets").glob("*.pdf")
-                     if not p.stem.endswith("_answers")),
-                    key=lambda p: p.stem, reverse=True)
+                     if not p.stem.endswith("_answers")), key=order)
     rows = []
     for p in sheets:
-        m = re.match(r"^(\d{4})(\d{2})(\d{2})$", p.stem)
-        label = f"{m.group(2).lstrip('0')} 月 {m.group(3).lstrip('0')} 日" if m else p.stem
+        if re.fullmatch(r"\d{1,2}", p.stem):          # 01 → 第 1 课（一课一张）
+            label = f"第 {int(p.stem)} 课"
+        else:
+            m = re.match(r"^(\d{4})(\d{2})(\d{2})$", p.stem)
+            label = (f"{m.group(2).lstrip('0')} 月 {m.group(3).lstrip('0')} 日"
+                     if m else p.stem)
         spec = Path("specs") / f"{p.stem}.txt"
         note = ""
         if spec.exists():
             text = spec.read_text(encoding="utf-8")
-            rng = re.search(r"^range\s*:\s*(.+)$", text, re.MULTILINE)
+            head = (re.search(r"^lesson\s*:\s*(.+)$", text, re.MULTILINE)
+                    or re.search(r"^range\s*:\s*(.+)$", text, re.MULTILINE))
             names = re.findall(r"^\[(.+?)\]", text, re.MULTILINE)
-            note = " · ".join(filter(None, [rng.group(1).strip() if rng else "",
+            note = " · ".join(filter(None, [head.group(1).strip() if head else "",
                                             " ".join(names)]))
         rows.append(ROW_TEMPLATE.format(label=html.escape(label),
                                         note=html.escape(note),
