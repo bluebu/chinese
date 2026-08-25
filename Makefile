@@ -20,7 +20,7 @@ help:
 	@echo "  make stop      停止预览服务"
 	@echo "  make practice  用 specs/ 里最新的 spec 生成今日练习单（HTML + PDF）"
 	@echo "  make recite    用 specs/ 里最新的 spec 生成朗读打卡单（HTML + PDF）"
-	@echo "  make check     用 specs/ 里最新的 spec 生成抽查单（题面版 + 家长版）"
+	@echo "  make check     生成每一课的抽查单（题面版 + 家长版）"
 	@echo "  make outline   生成课文要求总表（A4 打印单 + 网页速查页）"
 	@echo "  make up PORT=9000   指定端口启动"
 	@echo ""
@@ -61,7 +61,7 @@ recite:
 	@cd recite && python3 generate_recite.py --pdf
 
 check:
-	@cd check && python3 generate_check.py --pdf && python3 generate_check.py --answers --pdf
+	@cd check && python3 generate_check.py --all --pdf
 
 outline:
 	@cd outline && python3 generate_outline.py --pdf

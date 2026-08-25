@@ -241,6 +241,24 @@ def parse_spec(path: Path) -> tuple:
     return conf, blocks
 
 
+def stem_label(stem: str, lesson: str = "") -> str:
+    """文件名 → 课次名。01 → 第 1 课；03y → 语文园地（名字取自 spec 的 lesson:）。"""
+    if re.fullmatch(r"\d{1,2}", stem):
+        return f"第 {int(stem)} 课"
+    if re.fullmatch(r"\d{1,2}y", stem):
+        return lesson or "语文园地"
+    return stem
+
+
+def order(stem: str) -> tuple:
+    """严格照课本目录排：语文园地跟在它所属单元最后一课的后面。
+    03y = 第 3 课之后的语文园地一 → 排在 03 和 04 之间。"""
+    m = re.fullmatch(r"(\d{1,2})(y?)", stem)
+    if m:
+        return (0, int(m.group(1)), 1 if m.group(2) else 0)
+    return (1, 0, 0)
+
+
 def build(spec_path: Path, pdf: bool = False, answers: bool = False) -> None:
     conf, blocks = parse_spec(spec_path)
 
@@ -400,31 +418,20 @@ ROW_TEMPLATE = """      <li>
 def write_index() -> None:
     """扫 sheets/ 生成 check/index.html（GitHub Pages 不会自动列目录）。
     按日期倒序，最新的在最上面；副标题取同名 spec 的 range: 和题块名。"""
-    def order(p: Path) -> tuple:
-        """一课一张的按课号升序排前面；按日期命名的旧单子排后面，新的在前。"""
-        if re.fullmatch(r"\d{1,2}", p.stem):
-            return (0, int(p.stem))
-        return (1, -int(p.stem)) if p.stem.isdigit() else (2, 0)
-
     sheets = sorted((p for p in Path("sheets").glob("*.pdf")
-                     if not p.stem.endswith("_answers")), key=order)
+                     if not p.stem.endswith("_answers")), key=lambda p: order(p.stem))
     rows = []
     for p in sheets:
-        if re.fullmatch(r"\d{1,2}", p.stem):          # 01 → 第 1 课（一课一张）
-            label = f"第 {int(p.stem)} 课"
-        else:
-            m = re.match(r"^(\d{4})(\d{2})(\d{2})$", p.stem)
-            label = (f"{m.group(2).lstrip('0')} 月 {m.group(3).lstrip('0')} 日"
-                     if m else p.stem)
         spec = Path("specs") / f"{p.stem}.txt"
-        note = ""
+        lesson, blocks = "", []
         if spec.exists():
             text = spec.read_text(encoding="utf-8")
-            head = (re.search(r"^lesson\s*:\s*(.+)$", text, re.MULTILINE)
-                    or re.search(r"^range\s*:\s*(.+)$", text, re.MULTILINE))
-            names = re.findall(r"^\[(.+?)\]", text, re.MULTILINE)
-            note = " · ".join(filter(None, [head.group(1).strip() if head else "",
-                                            " ".join(names)]))
+            m = re.search(r"^lesson\s*:\s*(.+)$", text, re.MULTILINE)
+            lesson = m.group(1).strip() if m else ""
+            blocks = re.findall(r"^\[(.+?)\]", text, re.MULTILINE)
+        label = stem_label(p.stem, lesson)
+        note = " · ".join(filter(None, [lesson if "园地" not in label else "",
+                                        " ".join(blocks)]))
         rows.append(ROW_TEMPLATE.format(label=html.escape(label),
                                         note=html.escape(note),
                                         pdf=f"./sheets/{p.name}"))
@@ -447,4 +454,12 @@ if __name__ == "__main__":
     pdf = "--pdf" in sys.argv
     answers = "--answers" in sys.argv
     argv = [a for a in sys.argv[1:] if not a.startswith("--")]
-    build(Path(argv[0]) if argv else latest_spec(), pdf=pdf, answers=answers)
+    if "--all" in sys.argv:               # 每课都出，题面版 + 家长版
+        specs = sorted(Path("specs").glob("*.txt"), key=lambda q: order(q.stem))
+        if not specs:
+            sys.exit("specs/ 下没有 spec 文件")
+        for spec in specs:
+            build(spec, pdf=pdf, answers=False)
+            build(spec, pdf=pdf, answers=True)
+    else:
+        build(Path(argv[0]) if argv else latest_spec(), pdf=pdf, answers=answers)

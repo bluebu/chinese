@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>抽查单（家长版）</title>
+<style>
+  @page { size: A4; margin: 12mm 14mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Songti SC", sans-serif;
+    color: #111; font-size: 13px;
+    /* 打印时保留背景/边框颜色，否则勾选框和块头底色全没了 */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* 屏幕预览时模拟 A4 纸张 */
+  @media screen {
+    body { background: #888; padding: 20px 0; }
+    .page {
+      width: 210mm; height: 297mm; margin: 0 auto 20px;
+      background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.4);
+      padding: 12mm 14mm;
+    }
+  }
+  /* 一张单子一页：撑满 A4，总评区钉底 */
+  .page { display: flex; flex-direction: column; }
+  @media print { .page { height: 273mm; } }
+  .page + .page { page-break-before: always; }
+
+  .header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2px solid #111; padding-bottom: 6px; margin-bottom: 3mm;
+  }
+  .header h1 { font-size: 18px; padding-right: 10px; }
+  .header h1 small { font-size: 13px; font-weight: 400; color: #666; }
+  .header .info { font-size: 12px; white-space: nowrap; }
+  .header .info span { margin-left: 10px; }
+  .header .info b { color: #42688F; }
+  .blank { display: inline-block; border-bottom: 1px solid #111; width: 42px; }
+
+  .hint {
+    font-size: 13px; color: #35536f; background: #E7EEF6;
+    border-left: 3px solid #42688F; border-radius: 0 4px 4px 0;
+    padding: 4px 9px; margin-bottom: 4mm;
+  }
+
+  .blocks { flex: 0 0 auto; }
+  .block { margin-bottom: 4mm; break-inside: avoid; }
+  .bh {
+    display: flex; align-items: baseline; gap: 6px;
+    border-bottom: 1px solid #C7D3E0; padding-bottom: 3px; margin-bottom: 2.5mm;
+  }
+  .bh .no {
+    flex: 0 0 auto; width: 5.5mm; height: 5.5mm; border-radius: 50%;
+    background: #42688F; color: #fff; font-size: 10px;
+    display: grid; place-items: center; align-self: center;
+  }
+  .bh h2 {
+    flex: 1 1 auto; font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+    font-size: 18px; font-weight: 700;
+  }
+  .bh h2 small { font-size: 13px; font-weight: 400; color: #666; }
+  .bh .meta { flex: 0 0 auto; font-size: 12px; color: #666; white-space: nowrap; }
+  .bh .meta em { font-style: normal; color: #42688F; }
+  .bh .meta i {
+    font-style: normal; margin-left: 8px; color: #b3423f;
+    background: #FAE9E7; border-radius: 3px; padding: 1px 5px;
+  }
+  .note { font-size: 12.5px; color: #777; margin-bottom: 2.5mm; }
+
+  /* 勾选框：家长边问边打勾 */
+  .tick {
+    flex: 0 0 auto; width: 5.4mm; height: 5.4mm;
+    border: 1pt solid #42688F; border-radius: 1mm; background: #fff;
+  }
+
+  /* 词语网格：两列，一项一格 */
+  .items { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 6mm; }
+  .items .it { display: flex; align-items: center; gap: 2.5mm; }
+  .items .q {
+    font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+    font-size: 20px; white-space: nowrap;
+  }
+  .items .a { font-size: 13px; color: #b3423f; font-family: "Times New Roman", serif; }
+  .items .dots { flex: 1 1 auto; border-bottom: 1px dotted #ccc; }
+
+  /* 整行问答：题面长、答案长的用这个 */
+  .ask { display: flex; align-items: flex-start; gap: 2.5mm; margin-bottom: 2.5mm; }
+  .ask .tick { margin-top: .6mm; }
+  .ask .body { flex: 1 1 auto; min-width: 0; }
+  .ask .q { font-family: "Kaiti SC", "STKaiti", "Songti SC", serif; font-size: 20px; }
+  .ask .a { font-size: 12.5px; color: #777; line-height: 1.65; }
+  .ask .a b { color: #b3423f; font-weight: 400; }
+
+  /* 默写用的空白横线 */
+  .lines .ln { height: 11mm; border-bottom: 1px solid #999; }
+  .lines .ln:first-child { margin-top: 1mm; }
+  .answer { font-size: 12.5px; color: #999; margin-top: 2mm; }
+  .answer b { color: #b3423f; font-weight: 400; }
+
+  /* 错题格吃掉剩余高度（只印在题面版上），把空白变成能写字的地方 */
+  .memo {
+    flex: 1 1 auto; min-height: 16mm; margin-top: 2mm;
+    border: 1px dashed #C7D3E0; border-radius: 4px; padding: 3px 8px;
+    font-size: 12px; color: #9aa8b6;
+  }
+
+  /* 总评区钉在页底 */
+  .total {
+    margin-top: auto; padding-top: 4mm; border-top: 1.5px dashed #bbb;
+    display: flex; align-items: baseline; justify-content: space-between;
+    font-size: 13px; color: #555;
+  }
+  .total .big { font-size: 14px; color: #111; }
+  .total .big b { color: #42688F; font-size: 16px; }
+  .footer { margin-top: 2mm; text-align: right; color: #999; font-size: 10px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>抽查单（家长版）<small>　第 13 课　普罗米修斯</small></h1>
+    <div class="info"><span>约 <b>10</b> 分钟</span></div>
+  </div>
+  <p class="hint">家长照着念，孩子口头答。本课书上不要求背诵，重点是复述——把起因、经过、结果说全。</p>
+
+  <div class="blocks">
+    <div class="block">
+      <div class="bh">
+        <span class="no">1</span>
+        <h2>读准<small>　众神的名字最容易读错</small></h2>
+        <span class="meta"><em>2 分钟</em><i>过关：错 ≤ 1 个</i></span>
+      </div>
+      <div class="items">
+          <div class="it"><span class="tick"></span><span class="q">普罗米修斯</span><span class="a">sī</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">宙斯</span><span class="a">zhòu</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">赫淮斯托斯</span><span class="a">hè huái</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">赫拉克勒斯</span><span class="a">lè</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">悲惨</span><span class="a">cǎn</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">惩罚</span><span class="a">chéng</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">锁链</span><span class="a">suǒ liàn</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">肝脏</span><span class="a">gān zàng</span><span class="dots"></span></div>
+      </div>
+    </div>
+    <div class="block">
+      <div class="bh">
+        <span class="no">2</span>
+        <h2>听写<small>　家长报词，孩子写在横线上</small></h2>
+        <span class="meta"><em>2 分钟</em><i>过关：错 ≤ 1 个</i></span>
+      </div>
+      <p class="note">本课要写的 13 个字：驱 即 执 佩 忍 违 抗 环 既 遭 屈 肝 脏</p>
+      <div class="lines">
+        <div class="ln"></div>
+      </div>
+      <p class="answer"><b>答：</b>可报：驱赶、立即、执行、敬佩、忍受、违抗、铁环、既不能动弹、遭受、屈服、肝脏</p>
+    </div>
+    <div class="block">
+      <div class="bh">
+        <span class="no">3</span>
+        <h2>复述<small>　起因 · 经过 · 结果</small></h2>
+        <span class="meta"><em>4 分钟</em><i>过关：三样齐了才算过</i></span>
+      </div>
+      <div class="ask"><span class="tick"></span><span class="body"><span class="q">按起因、经过、结果复述这个故事</span><div class="a"><b>答：</b>起因：人间没有火，人们只好吃生的东西、在黑暗中度过长夜，普罗米修斯决心冒险到天上「盗」取火种；经过：宙斯知道后要给他最严厉的惩罚，火神劝他归还火种、承认错误，他摇头拒绝，被死死锁在高加索山的悬崖上，日夜受风吹雨淋，还有鹫鹰每天啄食他的肝脏，他始终不屈服；结果：许多年后大力士赫拉克勒斯经过，射死鹫鹰、砸碎锁链，他终于获得自由</div></span></div>
+      <div class="ask"><span class="tick"></span><span class="body"><span class="q">他为什么不肯归还火种？</span><div class="a"><b>答：</b>他说「为人类造福，有什么错？我可以忍受各种痛苦，但决不会承认错误」</div></span></div>
+    </div>
+    <div class="block">
+      <div class="bh">
+        <span class="no">4</span>
+        <h2>情节<small>　说说自己的想法</small></h2>
+        <span class="meta"><em>1 分钟</em><i>过关：说得出理由</i></span>
+      </div>
+      <div class="ask"><span class="tick"></span><span class="body"><span class="q">哪个情节触动了你？为什么？</span><div class="a"><b>答：</b>例：他宁愿受苦也不认错；肝脏白天被吃光、晚上又长出来，痛苦永远没有尽头（能说出理由就算过）</div></span></div>
+    </div>
+    <div class="block">
+      <div class="bh">
+        <span class="no">5</span>
+        <h2>词语<small>　说个大概意思就行</small></h2>
+        <span class="meta"><em>1 分钟</em><i>过关：说对 2 个</i></span>
+      </div>
+      <div class="items">
+          <div class="it"><span class="tick"></span><span class="q">违抗</span><span class="a">违反抗拒</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">屈服</span><span class="a">低头认输</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">敬佩</span><span class="a">尊敬佩服</span><span class="dots"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="total">
+    <span class="big">过关 <span class="blank"></span> / <b>15</b> 项</span>
+    <span>错的圈出来，明天再问一遍　　家长签字 <span class="blank"></span></span>
+  </div>
+  <div class="footer">共 5 题块 / 15 项</div>
+</div>
+</body>
+</html>

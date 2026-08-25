@@ -6,11 +6,16 @@
 check/
   generate_check.py         生成脚本
   specs/01.txt              第 1 课的抽查内容（按课号命名）
+  specs/03y.txt             语文园地一（排在第 3 课后面）
   sheets/01.html|.pdf       生成的抽查单（_answers 后缀是家长版）
 ```
 
 **spec 按课号命名**：`01.txt` = 第 1 课，`08.txt` = 第 8 课。学完哪课打印哪张，
 别把几课混在一张上——混着问，孩子累，也看不出是哪一课没记住。
+
+**语文园地用 `<课号>y`，严格照课本目录排在它所属单元的最后一课后面**：
+`03y` = 语文园地一（第一单元末，第 3 课后）、`07y` = 语文园地二、`10y` = 语文园地三、
+`14y` = 语文园地四。目录页就按这个顺序列，不要把园地都堆到最后。
 
 两版分开印：
 
@@ -23,13 +28,14 @@ check/
 **脚本用相对路径，一律在 `check/` 目录下运行。**
 
 ```bash
-python3 generate_check.py specs/01.txt --pdf              # 题面版 HTML + PDF
+python3 generate_check.py --all --pdf                     # 每课都出（题面版 + 家长版）
+python3 generate_check.py specs/01.txt --pdf              # 只出第 1 课，题面版
 python3 generate_check.py specs/01.txt                    # 只出 HTML（先在浏览器看排版）
 python3 generate_check.py specs/01.txt --answers --pdf    # 家长版（答案全印）
 python3 generate_check.py --pdf                           # 不给 spec 就用 specs/ 里最新改动的那份
 ```
 
-PDF 由无头 Chrome 导出，A4 竖版，直接打印。
+或在根目录 `make check` 一次出全部。PDF 由无头 Chrome 导出，A4 竖版，直接打印。
 
 ## spec 写法
 

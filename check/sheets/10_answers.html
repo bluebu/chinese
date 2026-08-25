@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>抽查单（家长版）</title>
+<style>
+  @page { size: A4; margin: 12mm 14mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Songti SC", sans-serif;
+    color: #111; font-size: 13px;
+    /* 打印时保留背景/边框颜色，否则勾选框和块头底色全没了 */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* 屏幕预览时模拟 A4 纸张 */
+  @media screen {
+    body { background: #888; padding: 20px 0; }
+    .page {
+      width: 210mm; height: 297mm; margin: 0 auto 20px;
+      background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.4);
+      padding: 12mm 14mm;
+    }
+  }
+  /* 一张单子一页：撑满 A4，总评区钉底 */
+  .page { display: flex; flex-direction: column; }
+  @media print { .page { height: 273mm; } }
+  .page + .page { page-break-before: always; }
+
+  .header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2px solid #111; padding-bottom: 6px; margin-bottom: 3mm;
+  }
+  .header h1 { font-size: 18px; padding-right: 10px; }
+  .header h1 small { font-size: 13px; font-weight: 400; color: #666; }
+  .header .info { font-size: 12px; white-space: nowrap; }
+  .header .info span { margin-left: 10px; }
+  .header .info b { color: #42688F; }
+  .blank { display: inline-block; border-bottom: 1px solid #111; width: 42px; }
+
+  .hint {
+    font-size: 13px; color: #35536f; background: #E7EEF6;
+    border-left: 3px solid #42688F; border-radius: 0 4px 4px 0;
+    padding: 4px 9px; margin-bottom: 4mm;
+  }
+
+  .blocks { flex: 0 0 auto; }
+  .block { margin-bottom: 4mm; break-inside: avoid; }
+  .bh {
+    display: flex; align-items: baseline; gap: 6px;
+    border-bottom: 1px solid #C7D3E0; padding-bottom: 3px; margin-bottom: 2.5mm;
+  }
+  .bh .no {
+    flex: 0 0 auto; width: 5.5mm; height: 5.5mm; border-radius: 50%;
+    background: #42688F; color: #fff; font-size: 10px;
+    display: grid; place-items: center; align-self: center;
+  }
+  .bh h2 {
+    flex: 1 1 auto; font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+    font-size: 18px; font-weight: 700;
+  }
+  .bh h2 small { font-size: 13px; font-weight: 400; color: #666; }
+  .bh .meta { flex: 0 0 auto; font-size: 12px; color: #666; white-space: nowrap; }
+  .bh .meta em { font-style: normal; color: #42688F; }
+  .bh .meta i {
+    font-style: normal; margin-left: 8px; color: #b3423f;
+    background: #FAE9E7; border-radius: 3px; padding: 1px 5px;
+  }
+  .note { font-size: 12.5px; color: #777; margin-bottom: 2.5mm; }
+
+  /* 勾选框：家长边问边打勾 */
+  .tick {
+    flex: 0 0 auto; width: 5.4mm; height: 5.4mm;
+    border: 1pt solid #42688F; border-radius: 1mm; background: #fff;
+  }
+
+  /* 词语网格：两列，一项一格 */
+  .items { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 6mm; }
+  .items .it { display: flex; align-items: center; gap: 2.5mm; }
+  .items .q {
+    font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+    font-size: 20px; white-space: nowrap;
+  }
+  .items .a { font-size: 13px; color: #b3423f; font-family: "Times New Roman", serif; }
+  .items .dots { flex: 1 1 auto; border-bottom: 1px dotted #ccc; }
+
+  /* 整行问答：题面长、答案长的用这个 */
+  .ask { display: flex; align-items: flex-start; gap: 2.5mm; margin-bottom: 2.5mm; }
+  .ask .tick { margin-top: .6mm; }
+  .ask .body { flex: 1 1 auto; min-width: 0; }
+  .ask .q { font-family: "Kaiti SC", "STKaiti", "Songti SC", serif; font-size: 20px; }
+  .ask .a { font-size: 12.5px; color: #777; line-height: 1.65; }
+  .ask .a b { color: #b3423f; font-weight: 400; }
+
+  /* 默写用的空白横线 */
+  .lines .ln { height: 11mm; border-bottom: 1px solid #999; }
+  .lines .ln:first-child { margin-top: 1mm; }
+  .answer { font-size: 12.5px; color: #999; margin-top: 2mm; }
+  .answer b { color: #b3423f; font-weight: 400; }
+
+  /* 错题格吃掉剩余高度（只印在题面版上），把空白变成能写字的地方 */
+  .memo {
+    flex: 1 1 auto; min-height: 16mm; margin-top: 2mm;
+    border: 1px dashed #C7D3E0; border-radius: 4px; padding: 3px 8px;
+    font-size: 12px; color: #9aa8b6;
+  }
+
+  /* 总评区钉在页底 */
+  .total {
+    margin-top: auto; padding-top: 4mm; border-top: 1.5px dashed #bbb;
+    display: flex; align-items: baseline; justify-content: space-between;
+    font-size: 13px; color: #555;
+  }
+  .total .big { font-size: 14px; color: #111; }
+  .total .big b { color: #42688F; font-size: 16px; }
+  .footer { margin-top: 2mm; text-align: right; color: #999; font-size: 10px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>抽查单（家长版）<small>　第 10 课　蟋蟀的住宅</small></h1>
+    <div class="info"><span>约 <b>10</b> 分钟</span></div>
+  </div>
+  <p class="hint">家长照着念，孩子口头答。本课书上不要求背诵，别让他硬背。</p>
+
+  <div class="blocks">
+    <div class="block">
+      <div class="bh">
+        <span class="no">1</span>
+        <h2>读准<small>　只读，不写</small></h2>
+        <span class="meta"><em>2 分钟</em><i>过关：错 ≤ 1 个</i></span>
+      </div>
+      <div class="items">
+          <div class="it"><span class="tick"></span><span class="q">蟋蟀</span><span class="a">xī shuài</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">住宅</span><span class="a">zhái</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">慎重</span><span class="a">shèn</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">住址</span><span class="a">zhǐ</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">挖掘</span><span class="a">jué</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">骤雨</span><span class="a">zhòu</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">简朴</span><span class="a">pǔ</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">干燥</span><span class="a">zào</span><span class="dots"></span></div>
+      </div>
+    </div>
+    <div class="block">
+      <div class="bh">
+        <span class="no">2</span>
+        <h2>听写<small>　家长报词，孩子写在横线上</small></h2>
+        <span class="meta"><em>2 分钟</em><i>过关：错 ≤ 1 个</i></span>
+      </div>
+      <p class="note">本课要写的 14 个字：宅 昆 毫 址 穴 厅 专 寸 内 简 朴 卫 较 增</p>
+      <div class="lines">
+        <div class="ln"></div>
+      </div>
+      <p class="answer"><b>答：</b>可报：住宅、昆虫、毫不可惜、住址、巢穴、大厅、专家、九寸深、内部、简朴、卫生、比较、增加</p>
+    </div>
+    <div class="block">
+      <div class="bh">
+        <span class="no">3</span>
+        <h2>课后题<small>　用自己的话说</small></h2>
+        <span class="meta"><em>4 分钟</em><i>过关：两方面都说出</i></span>
+      </div>
+      <div class="ask"><span class="tick"></span><span class="body"><span class="q">课文围绕住宅讲了哪两方面内容？</span><div class="a"><b>答：</b>一是住宅的样子（选址、外部的门和平台、内部墙壁光滑），二是住宅的修建过程</div></span></div>
+      <div class="ask"><span class="tick"></span><span class="body"><span class="q">用自己的话说蟋蟀怎么盖房子</span><div class="a"><b>答：</b>十月秋天初寒的时候：前足扒土，用大颚搬掉较大的土块，后足踏地，后腿上的两排锯把泥推到后面倾斜铺开；累了就在门口休息一会儿；洞挖到两寸深够宽敞，余下的是长时间整修，随天冷和身体长大加深加阔</div></span></div>
+      <div class="ask"><span class="tick"></span><span class="body"><span class="q">为什么说这住宅算「伟大的工程」？</span><div class="a"><b>答：</b>它的工具那样简单柔弱，却挖出了排水优良、有平台有卧室、墙壁光滑的住宅</div></span></div>
+    </div>
+    <div class="block">
+      <div class="bh">
+        <span class="no">4</span>
+        <h2>比作人<small>　体会写法</small></h2>
+        <span class="meta"><em>2 分钟</em><i>过关：说出「亲切生动」</i></span>
+      </div>
+      <div class="ask"><span class="tick"></span><span class="body"><span class="q">把蟋蟀比作人、把巢穴比作住宅，好处是什么？</span><div class="a"><b>答：</b>读起来亲切有趣，像在写一个人认真盖房子；课后那段《昆虫》只讲外形数据，课文比它生动</div></span></div>
+    </div>
+    <div class="block">
+      <div class="bh">
+        <span class="no">5</span>
+        <h2>词语<small>　说个大概意思就行</small></h2>
+        <span class="meta"><em>1 分钟</em><i>过关：说对 2 个</i></span>
+      </div>
+      <div class="items">
+          <div class="it"><span class="tick"></span><span class="q">随遇而安</span><span class="a">有什么条件就安心住下</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">慎重</span><span class="a">小心谨慎</span><span class="dots"></span></div>
+          <div class="it"><span class="tick"></span><span class="q">简朴</span><span class="a">简单朴素</span><span class="dots"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="total">
+    <span class="big">过关 <span class="blank"></span> / <b>16</b> 项</span>
+    <span>错的圈出来，明天再问一遍　　家长签字 <span class="blank"></span></span>
+  </div>
+  <div class="footer">共 5 题块 / 16 项</div>
+</div>
+</body>
+</html>
