@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>课文要求总表 · 我的语文小屋</title>
+<meta name="description" content="要背的只有 3 处：1 观潮（第 3~4 自然段）、8 古诗三首（三首全背）、12 精卫填海（全文）；要默写的只有 1 首：《题西林壁》" />
+<meta name="theme-color" content="#FBF6EB" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128451;</text></svg>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="课文要求总表 · 我的语文小屋" />
+<meta property="og:description" content="要背的只有 3 处：1 观潮（第 3~4 自然段）、8 古诗三首（三首全背）、12 精卫填海（全文）；要默写的只有 1 首：《题西林壁》" />
+<style>
+  :root{
+    --paper:#FBF6EB; --card:#FFFDF8; --ink:#4A3F36; --ink-soft:#9A8C7C;
+    --line:rgba(120,104,84,.16); --grid:rgba(120,104,84,.05);
+    --lan:#42688F; --lan-bg:#E7EEF6; --zhu:#b3423f; --zhu-bg:#FAE9E7; --qing:#4E8E7C;
+    --font-display:"Kaiti SC","STKaiti","PingFang SC",serif;
+    --font-cn:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; font-family:var(--font-cn); color:var(--ink); line-height:1.7;
+    min-height:100svh; background-color:var(--paper);
+    background-image:
+      radial-gradient(60% 50% at 88% -5%, rgba(66,104,143,.10), transparent 70%),
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:100% 100%,26px 26px,26px 26px;
+    background-attachment:fixed,scroll,scroll;
+  }
+  .wrap{ width:100%; max-width:900px; margin:0 auto; padding:40px 20px 64px; }
+  .back{ color:var(--ink-soft); text-decoration:none; font-size:.9rem; }
+  h1{ font-family:var(--font-display); font-size:clamp(1.8rem,7vw,2.4rem);
+      margin:12px 0 4px; line-height:1.25; }
+  .sub{ color:var(--ink-soft); margin:0 0 24px; font-size:.92rem; }
+
+  /* 摘要卡片：手机上第一屏就看到"要背的只有 3 处" */
+  .sum{ display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+  .sum .c{
+    background:var(--card); border:2px solid var(--line); border-radius:16px;
+    padding:12px 16px; box-shadow:0 3px 0 var(--line);
+  }
+  .sum .c b{ display:block; font-family:var(--font-display); font-size:1.1rem; color:var(--lan); }
+  .sum .c span{ font-size:.88rem; color:var(--ink-soft); }
+  .note{
+    font-size:.82rem; color:var(--ink-soft); background:var(--card);
+    border:1px dashed var(--line); border-radius:10px; padding:8px 12px; margin-bottom:22px;
+  }
+
+  /* 宽表格自己横向滚动，别让整页横滚 */
+  .scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch;
+           border:2px solid var(--line); border-radius:16px; background:var(--card); }
+  table{ border-collapse:collapse; min-width:820px; width:100%; font-size:.84rem; }
+  th,td{ border-bottom:1px solid var(--line); padding:9px 11px; text-align:left;
+         vertical-align:middle; }
+  thead th{ background:var(--lan-bg); color:#2F4D6B; font-weight:700; white-space:nowrap;
+            position:sticky; top:0; }
+  tbody tr:last-child td{ border-bottom:none; }
+  td.no{ color:var(--lan); font-weight:800; text-align:center; white-space:nowrap; }
+  td.name{ font-family:var(--font-display); font-size:1rem; white-space:nowrap; }
+  td.other{ font-size:.8rem; color:var(--ink-soft); line-height:1.6; min-width:230px; }
+  td.write{ text-align:center; font-size:.78rem; color:var(--ink-soft); white-space:nowrap; }
+  td.read,td.recite,td.copy{ white-space:nowrap; }
+  .on{ background:var(--zhu-bg); color:var(--zhu); font-weight:700; }
+  .on i{ font-style:normal; margin-right:3px; }
+  .off{ color:#CFC7BC; }
+  .todo{ color:var(--ink-soft); }
+  tr.yuan td.no, tr.yuan td.name{ color:var(--qing); }
+
+  .tail{ margin:22px 0 0; padding:0; list-style:none; }
+  .tail li{ font-size:.86rem; color:var(--ink-soft); line-height:1.9; }
+  .tail li::before{ content:"· "; color:var(--lan); font-weight:800; }
+  .dl{ margin-top:26px; text-align:center; }
+  .dl a{
+    display:inline-block; text-decoration:none; color:var(--ink); font-size:.9rem;
+    border:2px solid var(--line); border-radius:999px; padding:8px 20px;
+    background:var(--card); box-shadow:0 3px 0 var(--line);
+  }
+  .dl a:active{ transform:translateY(1px); box-shadow:0 1px 0 var(--line); }
+  .foot{ text-align:center; color:var(--ink-soft); font-size:.85rem; margin-top:30px; }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="back" href="../">← 回小屋</a>
+    <h1>课文要求总表</h1>
+    <p class="sub">2024 版人教统编版 · 四年级上册 · 第一~第四单元（1~14 课）</p>
+
+    <div class="sum">
+      <div class="c"><b>要背的只有 3 处</b><span>1 观潮（第 3~4 自然段）、8 古诗三首（三首全背）、12 精卫填海（全文）</span></div>
+      <div class="c"><b>要默写的只有 1 首</b><span>《题西林壁》</span></div>
+      <div class="c"><b>另有 3 处日积月累要背</b><span>语文园地一《赠刘景文》、二 4 句名言、三《别董大》</span></div>
+      <div class="c"><b>其余 11 课不要求背诵</b><span>只要求朗读或默读，加上&quot;会说&quot;</span></div>
+      <div class="c"><b>略读课文只认字、不写字</b><span>3* 现代诗二首、7* 田忌赛马、14* 女娲补天</span></div>
+    </div>
+    <p class="note">手上这份电子课本只到书页 53 —— 语文园地四、快乐读书吧、第五~第八单元、书末识字表/写字表/词语表都不在里面，等补齐课本再往下写。</p>
+
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>课</th><th>课文</th><th>背诵</th><th>默写</th><th>朗读</th>
+            <th>其他要求（书上原话）</th><th>写字</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="no">1</td>
+            <td class="name">观潮</td>
+            <td class="recite on"><i>●</i>第 3~4 自然段</td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read">有感情地朗读</td>
+            <td class="other">说课文按什么顺序描写、脑海中浮现怎样的画面；读《浪淘沙（其七）》，从课文里找出与诗相关的句子抄写下来</td>
+            <td class="write">14 字</td>
+          </tr>
+          <tr>
+            <td class="no">2</td>
+            <td class="name">繁星</td>
+            <td class="recite"><span class="off">—</span></td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read">有感情地朗读</td>
+            <td class="other">根据描写说说浮现怎样的画面；三次看繁星的感受有什么不同。小练笔：写写自己看星空的所见所感</td>
+            <td class="write">9 字</td>
+          </tr>
+          <tr>
+            <td class="no">3*</td>
+            <td class="name">现代诗二首</td>
+            <td class="recite"><span class="off">—</span></td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read">反复朗读</td>
+            <td class="other">说说诗中描绘了哪些景物、构成了怎样的画面</td>
+            <td class="write"><span class="todo">只认字</span></td>
+          </tr>
+          <tr>
+            <td class="no">4</td>
+            <td class="name">一个豆荚里的五粒豆</td>
+            <td class="recite"><span class="off">—</span></td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read"><span class="off">—</span></td>
+            <td class="other">把读课文时遇到的问题写下来；仿照小组问题清单整理问题；说说小女孩的病为什么慢慢好了</td>
+            <td class="write">15 字</td>
+          </tr>
+          <tr>
+            <td class="no">5</td>
+            <td class="name">夜间飞行的秘密</td>
+            <td class="recite"><span class="off">—</span></td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read"><span class="off">—</span></td>
+            <td class="other">分小组整理问题清单，想想可以从哪些角度提问（内容 / 写法 / 启示）；读片段试着从不同角度提问</td>
+            <td class="write">11 字</td>
+          </tr>
+          <tr>
+            <td class="no">6</td>
+            <td class="name">呼风唤雨的世纪</td>
+            <td class="recite"><span class="off">—</span></td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read"><span class="off">—</span></td>
+            <td class="other">整理问题清单，筛选出对理解课文最有帮助的问题；联系生活实际谈谈对最后一句话的理解</td>
+            <td class="write">11 字</td>
+          </tr>
+          <tr>
+            <td class="no">7*</td>
+            <td class="name">田忌赛马</td>
+            <td class="recite"><span class="off">—</span></td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read">默读</td>
+            <td class="other">提出自己的问题再试着分类；选出值得思考的问题，并尝试解决</td>
+            <td class="write"><span class="todo">只认字</span></td>
+          </tr>
+          <tr>
+            <td class="no">8</td>
+            <td class="name">古诗三首</td>
+            <td class="recite on"><i>●</i>课文（三首全背）</td>
+            <td class="copy on"><i>●</i>《题西林壁》</td>
+            <td class="read">有感情地朗读</td>
+            <td class="other">《暮江吟》写了哪两个时间段的景色、观察了哪些景物；说说对&quot;不识庐山真面目&quot;&quot;梅须逊雪三分白&quot;的理解</td>
+            <td class="write">12 字</td>
+          </tr>
+          <tr>
+            <td class="no">9</td>
+            <td class="name">爬山虎的脚</td>
+            <td class="recite"><span class="off">—</span></td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read">朗读课文</td>
+            <td class="other">说说从哪些地方看出作者观察得特别仔细；说说爬山虎怎样&quot;一脚一脚地往上爬&quot;；找出写得准确、形象的句子抄写下来</td>
+            <td class="write">12 字</td>
+          </tr>
+          <tr>
+            <td class="no">10</td>
+            <td class="name">蟋蟀的住宅</td>
+            <td class="recite"><span class="off">—</span></td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read">默读</td>
+            <td class="other">说说课文讲了哪两方面内容、作者是怎样观察的；用自己的话介绍住宅的修建过程；说说把蟋蟀比作人的好处</td>
+            <td class="write">14 字</td>
+          </tr>
+          <tr>
+            <td class="no">11</td>
+            <td class="name">盘古开天地</td>
+            <td class="recite"><span class="off">—</span></td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read">默读</td>
+            <td class="other">按故事发展顺序说说盘古开天地的过程；找出神奇的地方读一读，说说心目中的盘古。选做：收集神话故事讲给同学听</td>
+            <td class="write">12 字</td>
+          </tr>
+          <tr>
+            <td class="no">12</td>
+            <td class="name">精卫填海</td>
+            <td class="recite on"><i>●</i>课文（全文 35 字）</td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read">正确、流利地朗读</td>
+            <td class="other">结合注释，用自己的话讲讲精卫填海的故事；说说精卫留下了怎样的印象</td>
+            <td class="write">5 字</td>
+          </tr>
+          <tr>
+            <td class="no">13</td>
+            <td class="name">普罗米修斯</td>
+            <td class="recite"><span class="off">—</span></td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read">朗读，注意读好众神的名字</td>
+            <td class="other">按起因、经过、结果的顺序复述这个故事；说说哪个情节触动了你</td>
+            <td class="write">13 字</td>
+          </tr>
+          <tr>
+            <td class="no">14*</td>
+            <td class="name">女娲补天</td>
+            <td class="recite"><span class="off">—</span></td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read">默读</td>
+            <td class="other">说说故事的起因、经过和结果；发挥想象，把女娲从各地拣来五种颜色石头的过程说清楚、说生动</td>
+            <td class="write"><span class="todo">只认字</span></td>
+          </tr>
+          <tr class="yuan">
+            <td class="no">园地一</td>
+            <td class="name">日积月累</td>
+            <td class="recite on"><i>●</i>《赠刘景文》苏轼</td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read"><span class="off">—</span></td>
+            <td class="other">荷尽已无擎雨盖，菊残犹有傲霜枝。一年好景君须记，最是橙黄橘绿时。</td>
+            <td class="write"><span class="off">—</span></td>
+          </tr>
+          <tr class="yuan">
+            <td class="no">园地二</td>
+            <td class="name">日积月累</td>
+            <td class="recite on"><i>●</i>4 句名言</td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read"><span class="off">—</span></td>
+            <td class="other">好问则裕，自用则小。《尚书》／博学之，审问之，慎思之，明辨之，笃行之。《礼记》／智能之士，不学不成，不问不知。王充／人非生而知之者，孰能无惑？韩愈</td>
+            <td class="write"><span class="off">—</span></td>
+          </tr>
+          <tr class="yuan">
+            <td class="no">园地三</td>
+            <td class="name">日积月累</td>
+            <td class="recite on"><i>●</i>《别董大》高适</td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read"><span class="off">—</span></td>
+            <td class="other">千里黄云白日曛，北风吹雁雪纷纷。莫愁前路无知己，天下谁人不识君！</td>
+            <td class="write"><span class="off">—</span></td>
+          </tr>
+          <tr class="yuan">
+            <td class="no">园地四</td>
+            <td class="name">日积月累</td>
+            <td class="recite"><span class="todo">待补</span></td>
+            <td class="copy"><span class="off">—</span></td>
+            <td class="read"><span class="off">—</span></td>
+            <td class="other">书页 55，不在手上这份电子课本里——别凭印象补，等课本补齐再填</td>
+            <td class="write"><span class="off">—</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ul class="tail">
+      <li>会不会背 ≠ 会不会写：全册只有《题西林壁》一首要默写</li>
+      <li>&quot;复述 / 用自己的话讲&quot;有 5 课（10、11、12、13、14*），是口头功夫，不用抄</li>
+      <li>第二单元 4 课（4、5、6、7*）一处背诵任务都没有，整个单元练的是&quot;提问&quot;</li>
+      <li>教材标蓝的多音字按课文语境定音：薄 bó、隆 lóng、屏 píng、系 xì、降 xiáng、将 jiàng、划 huà、曲 qū、少 shào、脏 zàng</li>
+    </ul>
+
+    <p class="dl"><a href="./sheets/g4a.pdf">下载 A4 打印单（PDF）</a></p>
+    <p class="foot">2024 版人教统编版 · 四年级上册 · 第一~第四单元（1~14 课）　共 18 行</p>
+  </main>
+</body>
+</html>

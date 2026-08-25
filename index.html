@@ -19,6 +19,7 @@
       --line:rgba(120,104,84,.16); --grid:rgba(120,104,84,.05);
       --zhu:#D94F4F; --zhu-bg:#FAE0DE;
       --qing:#4E8E7C; --qing-bg:#DCEDE6;
+      --lan:#42688F;  --lan-bg:#DFE8F2;
       --font-display:"Kaiti SC","STKaiti",ui-rounded,"PingFang SC",system-ui,serif;
       --font-cn:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
     }
@@ -66,6 +67,8 @@
     .card .go{ flex:0 0 auto; font-weight:800; font-size:1.2rem; color:var(--ink-soft); }
     .card.qing .icon{ background:var(--qing-bg); }
     .card.qing h2 b{ color:var(--qing); }
+    .card.lan .icon{ background:var(--lan-bg); }
+    .card.lan h2 b{ color:var(--lan); }
     .card.soon{ opacity:.55; box-shadow:none; pointer-events:none; }
     .card.soon .icon{ background:var(--qing-bg); }
     .card.soon h2 b{ color:var(--qing); }
@@ -95,6 +98,24 @@
         <span class="tt">
           <h2>朗读<b>打卡</b></h2>
           <p>要背的课文 · 大字排版 · 读一遍涂一个圈</p>
+        </span>
+        <span class="go">→</span>
+      </a>
+
+      <a class="card lan" href="./check/">
+        <span class="icon">✅</span>
+        <span class="tt">
+          <h2>抽查<b>单</b></h2>
+          <p>学完一个单元 · 家长照着问一遍 · 十分钟</p>
+        </span>
+        <span class="go">→</span>
+      </a>
+
+      <a class="card lan" href="./outline/">
+        <span class="icon">🗃</span>
+        <span class="tt">
+          <h2>要求<b>总表</b></h2>
+          <p>哪篇要背 · 哪首要默写 · 一张表看完一册</p>
         </span>
         <span class="go">→</span>
       </a>

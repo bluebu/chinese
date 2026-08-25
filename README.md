@@ -1,9 +1,11 @@
 # 我的语文小屋
 
-小学生语文练习站。两个栏目：
+小学生语文练习站。四个栏目：
 
 - **今日练习**——把每天的生字、词语做成 A4「看拼音写汉字」打印单。
 - **朗读打卡**——把要背的课文做成 A4 大字打印单，读一遍涂一个圈。
+- **抽查单**——学完一课／一单元，家长照着单子问一遍，十分钟知道哪儿没记住。
+- **要求总表**——一册一份的宏观表：每课一行，哪篇要背、哪首要默写一眼看到。
 
 姊妹项目：[english](../english)（英语小屋），结构和工程约定一致。
 
@@ -22,6 +24,18 @@ recite/                 栏目二：朗读打卡（自包含，和其他栏目�
   specs/<日期>.txt      当天要读的篇目，一天一份
   sheets/<日期>.html    生成的打卡单（.pdf 同名）
   index.html            打卡单目录页（脚本自动生成，别手改）
+  README.md             spec 完整语法
+check/                  栏目三：抽查单（自包含，和其他栏目隔离）
+  generate_check.py     spec → A4 抽查单（题面版 + 家长版）
+  specs/<日期>.txt      这次要查什么，一次一份
+  sheets/<日期>.html    生成的抽查单（.pdf 同名；_answers 后缀是家长版）
+  index.html            抽查单目录页（脚本自动生成，别手改）
+  README.md             spec 完整语法
+outline/                栏目四：课文要求总表（自包含，和其他栏目隔离）
+  generate_outline.py   spec → A4 打印单 + 网页速查页
+  specs/g4a.txt         总表内容（一册一份，按册命名，不按日期）
+  sheets/g4a.html       A4 打印单（.pdf 同名）
+  index.html            网页速查页（脚本自动生成，别手改）
   README.md             spec 完整语法
 Makefile                本地预览 + 生成快捷命令
 .nojekyll               让 GitHub Pages 原样服务静态文件
@@ -77,6 +91,27 @@ task: 今天读 10 遍，以后要背诵。
 > 正文里 `字(拼音)` 排成小字注音，只标难字。字号三篇统一（27px），页头不印固定日期——
 > 同一份要读好几天，日期让孩子填右上角那栏。
 > 完整语法见 [recite/README.md](recite/README.md)。
+
+## 出一张要求总表
+
+```bash
+cd outline
+python3 generate_outline.py specs/g4a.txt --pdf
+```
+
+或在根目录 `make outline`。一份 spec 出两个东西：`sheets/g4a.pdf`（打印，夹在语文书里）
+和 `outline/index.html`（手机上翻）。spec 长这样：
+
+```
+[1] 观潮 read=有感情地朗读 recite=第 3~4 自然段 write=14
+other: 说课文按什么顺序描写、脑海中浮现怎样的画面……
+
+[3*] 现代诗二首 read=反复朗读 write=0        # 课号带 * = 略读课文，只认字不写字
+```
+
+> **要求一律照课后题原话**，别自己发明"熟悉""掌握"。背诵和默写分两列——书上要求背的不一定要默写
+> （1~14 课只有《题西林壁》写了"默写"）。课本没覆盖的单元写 `recite=待补`，**别凭印象补**。
+> 完整语法见 [outline/README.md](outline/README.md)。
 
 ## 本地启动预览
 
